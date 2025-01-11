@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Nanum_Gothic } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const nanumGothic = Nanum_Gothic({
+  weight: ["400", "700"],
+  variable: "--font-nanum-gothic",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${nanumGothic.variable} antialiased font-nanum`}
       >
-        {children}
+        <div className="h-screen max-w-2xl mx-auto py-10 px-7 shadow-lg rounded-xl">
+          {children}
+        </div>
       </body>
     </html>
   );
