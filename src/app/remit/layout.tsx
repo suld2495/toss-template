@@ -1,10 +1,15 @@
+import Header from "@/components/layout/Header";
+
 interface RemitLayout {
   children: React.ReactNode;
 }
 
-const RemitLayout = ({ children }: RemitLayout) => {
+const RemitLayout = async ({ children }: RemitLayout) => {
   return (
-    <div>{children}</div>
+    <div className="h-full flex flex-col">
+      <Header />
+      <main className="flex flex-1">{children}</main>
+    </div>
   )
 };
 

@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 
-type NumberKeypad = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '0';
+export type NumberKeypad = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '0';
 type Keypad = NumberKeypad | '취소' | 'arrow';
 
 class RemitFixture {
@@ -9,9 +9,10 @@ class RemitFixture {
   clickMoney(numbers: NumberKeypad[]) {
     const keypads = [...numbers].map((number) => this.keypad(number));
     
-    return Promise.all(keypads.map((keypad) => {
-      return keypad.click();
-    }));
+    return keypads.reduce(async (promise, keypad) => {
+      await promise;
+      return keypad.click()
+    }, Promise.resolve());
   }
 
   money() {
@@ -27,11 +28,11 @@ class RemitFixture {
       return this.page.getByRole('button', { name: '←' });
     }
 
-    return this.page.getByText(key);
+    return this.page.getByRole('button', { name: key });
   }
 
   submit() {
-    return this.page.getByRole('button', { name: '보내기' }).click();
+    return this.page.getByRole('link', { name: '보내기' }).click();
   }
 }
 
