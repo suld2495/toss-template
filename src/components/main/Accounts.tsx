@@ -5,7 +5,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 import KB from '@/assets/kb.webp';
 import KAKAO from '@/assets/kako.webp';
-import Link from "next/link";
+import AccountLink from "../main/AccountLink";
 
 const Accounts = async () => {
   const accounts = await fetchAccounts();
@@ -31,12 +31,7 @@ const Accounts = async () => {
               <span className="text-xs account-name text-gray-600">{name}</span>
               <span className="text-sm font-bold text-black">{balance.toLocaleString()} 원</span>
             </div>
-            <div className="h-8">
-              <Link 
-                className="h-full inline-flex items-center px-[12px] text-sm rounded-sm bg-gray-100 hover:bg-blue-500 hover:text-white transition-colors cursor-pointer"
-                href={`/remit`}
-              >송금</Link>
-            </div>
+            <AccountLink accountId={id} />
           </li>
         ))}
       </ul>
