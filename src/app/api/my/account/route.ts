@@ -1,4 +1,5 @@
-import { fetchAccounts, remitAccount } from "@/services/account";
+import { fetchAccounts } from "@/services/account";
+import { remit } from "@/services/action/remit";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async () => {
@@ -8,10 +9,10 @@ export const GET = async () => {
 
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
-  const { id, money } = body;
+  const { accountId, targetId, money } = body;
 
   const acounts = await fetchAccounts();
-  const account = acounts.find((account) => account.id === id);
+  const account = acounts.find((account) => account.id === accountId);
   
   if (!account) {
     return NextResponse.json({ error: "계좌가 존재하지 않습니다." }, { status: 404 });
@@ -21,6 +22,13 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ error: "잔액이 부족합니다." }, { status: 400 });
   }
 
-  remitAccount(id, money);
-  return NextResponse.json({});
+  remit({
+    myId: accountId,
+    targetId,
+    money
+  });
+  
+  return NextResponse.json({
+    message: "SUCCESS"
+  });
 }

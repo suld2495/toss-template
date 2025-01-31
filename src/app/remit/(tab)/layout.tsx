@@ -1,4 +1,4 @@
-import Header from "@/components/layout/Header";
+import RemitHeader from "@/components/layout/RemitHeader";
 
 interface RemitLayout {
   children: React.ReactNode;
@@ -7,7 +7,7 @@ interface RemitLayout {
 const RemitLayout = async ({ children }: RemitLayout) => {
   return (
     <div className="h-full flex flex-col">
-      <Header />
+      <RemitHeader />
       <main className="flex flex-1">{children}</main>
     </div>
   )

@@ -1,5 +1,17 @@
+import MyAccount from "@/components/result/MyAccount";
+import Preview from "@/components/result/Preview";
+import Submit from "@/components/result/Submit";
+
 const Result = () => {
-  return <div>송금 전 확인 페이지</div>
+  return (
+    <div className="h-full flex flex-col gap-4">
+      <Preview />
+      <div>
+        <MyAccount />
+        <Submit />
+      </div>
+    </div>
+  )
 };
 
 export default Result;

@@ -31,7 +31,7 @@ const Accounts = async () => {
               <span className="text-xs account-name text-gray-600">{name}</span>
               <span className="text-sm font-bold text-black">{balance.toLocaleString()} 원</span>
             </div>
-            <AccountLink accountId={id} />
+            <AccountLink accountId={id} account={name} balance={balance} />
           </li>
         ))}
       </ul>
