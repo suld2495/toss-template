@@ -1,8 +1,8 @@
 import { fetchContactList } from "@/services/account";
 import { NextResponse } from "next/server"
 
-export const GET = () => {
-  const contact = fetchContactList();
+export const GET = async () => {
+  const contact = await fetchContactList();
 
   return NextResponse.json(contact);
 }

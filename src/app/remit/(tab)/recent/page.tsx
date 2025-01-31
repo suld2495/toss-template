@@ -5,8 +5,8 @@ import { faStar } from '@fortawesome/free-regular-svg-icons'
 import RemitLink from "@/components/remit/RemitLink";
 import Profile from "@/components/remit/Profile";
 
-const Recent = () => {
-  const recent = fetchRecentList();
+const Recent = async () => {
+  const recent = await fetchRecentList();
 
   if (!recent.length) {
     return (

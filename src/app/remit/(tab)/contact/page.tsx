@@ -11,7 +11,7 @@ interface ContactProps {
 
 const Contact = async ({ searchParams }: ContactProps) => {
   const { keyword } = await searchParams;
-  const contact = fetchContactList();
+  const contact = await fetchContactList();
   const list = contact.filter(({ name }) => name.includes(keyword || ''));
 
   if (!list.length) {

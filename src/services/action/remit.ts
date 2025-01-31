@@ -11,8 +11,12 @@ interface RemitProps {
 }
 
 export const remit = async (data:  RemitProps) => {
-  remitAccount(data.myId, data.money);
-  addRecent(data.targetId);
+  await remitAccount(data.myId, data.money);
+  await addRecent(data.targetId);
+}
+
+export const remitAction = async (data:  RemitProps) => {
+  remit(data);
 
   revalidatePath("/");
   redirect("/result/complete");

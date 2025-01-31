@@ -1,3 +1,8 @@
-import sql from "better-sqlite3";
+import { Pool } from 'pg';
 
-export const db = sql("toss.db");
+export const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
