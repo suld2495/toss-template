@@ -1,7 +1,7 @@
 
 
 import RemitLink from "@/components/remit/RemitLink";
-import { fetchContactList } from "@/services/account";
+import { innderDB } from "@/services/account";
 import Keyword from "@/components/remit/Keyword";
 import Profile from "@/components/remit/Profile";
 
@@ -11,7 +11,7 @@ interface ContactProps {
 
 const Contact = async ({ searchParams }: ContactProps) => {
   const { keyword } = await searchParams;
-  const contact = await fetchContactList();
+  const contact = await innderDB.fetchContactList();
   const list = contact.filter(({ name }) => name.includes(keyword || ''));
 
   if (!list.length) {

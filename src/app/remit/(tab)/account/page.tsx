@@ -1,5 +1,5 @@
-const Account = () => {
-  return <div>계좌로 전송 페이지</div>
-};
+import BankSelect from "@/components/remit/BankSelect";
+
+const Account = () => <BankSelect />
 
 export default Account;

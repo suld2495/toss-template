@@ -1,13 +1,13 @@
 'use client';
 
-import { remit } from "@/services/action/remit";
+import { remitAction } from "@/services/action/remit";
 import useStore from "@/store";
 
 const Submit = () => {
   const { target: { id: targetId }, accountId, money } = useStore();
   
   const handleSubmit = (e: React.FormEvent) => {
-    remit({
+    remitAction({
       myId: accountId,
       targetId,
       money,

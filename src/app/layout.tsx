@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nanum_Gothic } from "next/font/google";
+import { Providers } from './providers'
 import "./globals.css";
 
 const nanumGothic = Nanum_Gothic({
@@ -25,7 +26,9 @@ export default function RootLayout({
         className={`${nanumGothic.variable} antialiased font-nanum`}
       >
         <div className="h-screen max-w-2xl mx-auto py-10 px-7 shadow-lg rounded-xl">
-          {children}
+          <Providers>
+            {children}
+          </Providers>
         </div>
       </body>
     </html>

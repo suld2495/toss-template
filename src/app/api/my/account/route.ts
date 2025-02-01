@@ -1,9 +1,9 @@
-import { fetchAccounts } from "@/services/account";
+import { db } from "@/services/account";
 import { remit } from "@/services/action/remit";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async () => {
-  const acounts = await fetchAccounts();
+  const acounts = await db.fetchAccounts();
   return NextResponse.json(acounts);
 };
 
@@ -11,7 +11,7 @@ export const POST = async (req: NextRequest) => {
   const body = await req.json();
   const { accountId, targetId, money } = body;
 
-  const acounts = await fetchAccounts();
+  const acounts = await db.fetchAccounts();
   const account = acounts.find((account) => account.id === accountId);
   
   if (!account) {
@@ -25,7 +25,7 @@ export const POST = async (req: NextRequest) => {
   remit({
     myId: accountId,
     targetId,
-    money
+    money,
   });
   
   return NextResponse.json({

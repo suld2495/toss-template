@@ -1,12 +1,11 @@
-import { fetchRecentList } from "@/services/account";
+import { innderDB } from "@/services/account";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from '@fortawesome/free-regular-svg-icons'
 import RemitLink from "@/components/remit/RemitLink";
 import Profile from "@/components/remit/Profile";
+import Bookmark from "@/components/remit/Bookmark";
 
 const Recent = async () => {
-  const recent = await fetchRecentList();
+  const recent = await innderDB.fetchRecentList();
 
   if (!recent.length) {
     return (
@@ -27,9 +26,7 @@ const Recent = async () => {
               <p className="text-xs text-[#56606f]">{item.account}</p>
             </div>
           </RemitLink>
-          <div className="flex items-center">
-            <FontAwesomeIcon width={20} icon={faStar} />
-          </div>
+          <Bookmark id={item.id} bookmark={item.bookmark} />
         </li>
       ))}
     </ul>
