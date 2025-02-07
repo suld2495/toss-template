@@ -26,7 +26,7 @@ export const POST = async (req: NextRequest) => {
     myId: accountId,
     targetId,
     money,
-  });
+  }, true, type);
   
   return NextResponse.json({
     message: "SUCCESS"
