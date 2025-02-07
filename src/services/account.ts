@@ -89,3 +89,4 @@ export const connectDB = (init: string = '') => {
 
 export const db = connectDB();
 export const innderDB = connectDB('m_');
+export const typeDB = (type: string) => connectDB(type);

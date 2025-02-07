@@ -1,7 +1,7 @@
 'use server';
 
 import { redirect } from "next/navigation";
-import { db, innderDB } from "../account";
+import { db, innderDB, typeDB } from "../account";
 import { revalidatePath } from "next/cache";
 
 interface RemitProps {
@@ -10,10 +10,15 @@ interface RemitProps {
   money: number;
 }
 
-export const remit = async (data:  RemitProps, api: boolean = true) => {
+export const remit = async (data:  RemitProps, api: boolean = true, type: string = '') => {
   if (api) {
-    await db.remitAccount(data.myId, data.money);
-    await db.addRecent(data.targetId);
+    if (type) {
+      await typeDB(type).remitAccount(data.myId, data.money);
+      await typeDB(type).addRecent(data.targetId);
+    } else {
+      await db.remitAccount(data.myId, data.money);
+      await db.addRecent(data.targetId);
+    }
   } else {
     await innderDB.remitAccount(data.myId, data.money);
     await innderDB.addRecent(data.targetId);

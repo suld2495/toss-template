@@ -9,7 +9,7 @@ export const GET = async () => {
 
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
-  const { accountId, targetId, money } = body;
+  const { accountId, targetId, money, type } = body;
 
   const acounts = await db.fetchAccounts();
   const account = acounts.find((account) => account.id === accountId);
