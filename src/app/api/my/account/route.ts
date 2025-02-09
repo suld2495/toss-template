@@ -1,9 +1,12 @@
-import { db } from "@/services/account";
+import { typeDB } from "@/services/account";
 import { remit } from "@/services/action/remit";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
-  const acounts = await db.fetchAccounts();
+export const GET = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams
+  const type = searchParams.get('type') || '';
+
+  const acounts = await typeDB(type).fetchAccounts();
   return NextResponse.json(acounts);
 };
 
@@ -11,7 +14,7 @@ export const POST = async (req: NextRequest) => {
   const body = await req.json();
   const { accountId, targetId, money, type } = body;
 
-  const acounts = await db.fetchAccounts();
+  const acounts = await typeDB(type).fetchAccounts();
   const account = acounts.find((account) => account.id === accountId);
   
   if (!account) {
